@@ -3,5 +3,27 @@
         "name": "Prueba Aleatoria",
         "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
     },
-    "item": []
+    "item": [
+        {
+            "name": "API Aleatoria",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "https://api.example.com/random",
+                    "protocol": "https",
+                    "host": [
+                        "api",
+                        "example",
+                        "com"
+                    ],
+                    "path": [
+                        "random"
+                    ]
+                }
+            },
+            "response": []
+        }
+    ]
+
 }
