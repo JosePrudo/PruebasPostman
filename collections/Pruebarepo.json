@@ -1,0 +1,49 @@
+{
+    "info": {
+        "name": "Prueba Repo",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "API Repo",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "https://api.example.com/repo",
+                    "protocol": "https",
+                    "host": [
+                        "api",
+                        "example",
+                        "com"
+                    ],
+                    "path": [
+                        "repo"
+                    ]
+                }
+            },
+            "response": []
+        }
+        {
+            "name": "API Repo Details",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "https://api.example.com/repo/details",
+                    "protocol": "https",
+                    "host": [
+                        "api",
+                        "example",
+                        "com"
+                    ],
+                    "path": [
+                        "repo",
+                        "details"
+                    ]
+                }
+            },
+            "response": []
+        }
+    ]
+}
