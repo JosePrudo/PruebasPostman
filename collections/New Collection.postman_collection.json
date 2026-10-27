@@ -1,0 +1,98 @@
+{
+  "info": {
+    "_postman_id": "2e402c9b-9b3a-41a2-b339-f01c0310db49",
+    "name": "New Collection",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "58068670",
+    "_collection_link": "https://go.postman.co/collection/58068670-2e402c9b-9b3a-41a2-b339-f01c0310db49?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "API Lamborgini",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code es 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Content-Type es JSON\", function () {",
+              "    pm.response.to.have.header(\"Content-Type\");",
+              "    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+              "});",
+              "",
+              "pm.test(\"Tiempo de respuesta < 10s\", function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(10000);",
+              "});",
+              "",
+              "const json = pm.response.json();",
+              "",
+              "pm.test(\"La marca es Lamborghini\", function () {",
+              "    pm.expect(json.name).to.eql(\"Lamborghini\");",
+              "    pm.expect(json.description).to.be.a(\"string\").and.not.empty;",
+              "    pm.expect(json.image).to.eql(\"Lamborghini-Logo.png\");",
+              "});",
+              "",
+              "pm.test(\"Estructura de paginación de modelos\", function () {",
+              "    pm.expect(json.models).to.be.an(\"object\");",
+              "    pm.expect(json.models.totalPages).to.be.a(\"number\").and.at.least(1);",
+              "    pm.expect(json.models.models).to.be.an(\"array\").and.not.empty;",
+              "});",
+              "",
+              "pm.test(\"Cada modelo tiene los campos esperados\", function () {",
+              "    const makeId = pm.request.url.path.slice(-1)[0];",
+              "    json.models.models.forEach(m => {",
+              "        pm.expect(m).to.include.keys(\"id\", \"name\", \"image\", \"make\", \"makeId\", \"votes\", \"rank\", \"engineVol\", \"comments\", \"totalComments\");",
+              "        pm.expect(m.make).to.eql(\"Lamborghini\");",
+              "        pm.expect(m.makeId).to.eql(makeId);",
+              "        pm.expect(m.id.startsWith(makeId + \"|\")).to.be.true;",
+              "        pm.expect(m.votes).to.be.a(\"number\").and.at.least(0);",
+              "        pm.expect(m.engineVol).to.be.a(\"number\").and.above(0);",
+              "        pm.expect(m.comments).to.be.an(\"array\");",
+              "    });",
+              "});",
+              "",
+              "pm.test(\"Modelos ordenados por rank y votos descendentes\", function () {",
+              "    const models = json.models.models;",
+              "    for (let i = 1; i < models.length; i++) {",
+              "        pm.expect(models[i].rank).to.be.above(models[i - 1].rank);",
+              "        pm.expect(models[i].votes).to.be.at.most(models[i - 1].votes);",
+              "    }",
+              "});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://k51qryqov3.execute-api.ap-southeast-2.amazonaws.com/prod/makes/ckl2phsabijs71623vk0?modelsPage=1",
+          "protocol": "https",
+          "host": [
+            "k51qryqov3",
+            "execute-api",
+            "ap-southeast-2",
+            "amazonaws",
+            "com"
+          ],
+          "path": [
+            "prod",
+            "makes",
+            "ckl2phsabijs71623vk0"
+          ],
+          "query": [
+            {
+              "key": "modelsPage",
+              "value": "1"
+            }
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
