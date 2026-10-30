@@ -1,0 +1,20 @@
+{
+    "info": {
+        "_postman_id": "59dceabf-85e5-421b-8d1a-f5f785d21e4e",
+        "name": "Sincron2",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Prueba1",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": ""
+                }
+            },
+            "response": []
+        }
+    ]
+}
